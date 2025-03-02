@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jetbrakey</title>
+    
+    <!-- 预加载脚本，防止暗黑模式闪烁 -->
+    <script>
+        // 检查本地存储中的主题设置
+        const savedTheme = localStorage.getItem('theme');
+        // 检查系统主题偏好
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // 如果有保存的主题设置，使用保存的设置；否则，根据系统主题偏好设置
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+    
+    <!-- 网站图标 -->
+    <link rel="icon" type="image/png" href="assets/image/Jetbrakey32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/image/Jetbrakey64.png" sizes="64x64" />
+    <link rel="icon" type="image/png" href="assets/image/Jetbrakey128.png" sizes="128x128" />
+    <link rel="icon" type="image/png" href="assets/image/Jetbrakey256.png" sizes="256x256" />
+    <link rel="shortcut icon" href="assets/image/Jetbrakey32.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="assets/image/Jetbrakey128.png" />
+    
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 固定导航栏 -->
+    <header class="navbar">
+        <div class="navbar-content">
+            <div class="category-tabs">
+                <button class="category-btn active" data-category="jetbra">Jetbra</button>
+                <button class="category-btn" data-category="plugins">插件</button>
+            </div>
+        </div>
+        <div class="download-info"></div>
+    </header>
+    
+    <!-- 卡片容器 -->
+    <main class="card-container" id="card-container">
+        <!-- 卡片将通过JS动态生成 -->
+    </main>
+
+    <!-- 右下角控制按钮 -->
+    <div class="floating-controls">
+        <button id="language-toggle" title="切换语言">
+            <i class="fas fa-language"></i>
+        </button>
+        <button id="theme-toggle" title="切换主题">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- 底部下载提示 -->
+    <div class="download-banner" id="download-banner">
+        <div class="download-text"></div>
+    </div>
+
+    <!-- 页脚免责声明 -->
+    <footer class="footer" id="footer">
+        <div class="disclaimer">
+        </div>
+    </footer>
+
+    <!-- 引入脚本 -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+/* 基础样式 */
+:root {
+    --primary-color: #4a86e8;
+    --secondary-color: #6aa84f;
+    --background-color: #ffffff;
+    --card-background: #f9f9f9;
+    --text-color: #333333;
+    --border-color: #dddddd;
+    --navbar-bg: #333333;
+    --navbar-text: #ffffff;
+    --button-bg: #4a86e8;
+    --button-text: #ffffff;
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --navbar-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 暗色主题 */
+.dark-theme {
+    --background-color: #1a1a1a;
+    --card-background: #2d2d2d;
+    --text-color: #f0f0f0;
+    --border-color: #444444;
+    --navbar-bg: #121212;
+    --button-bg: #2a5db0;
+    --navbar-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* 导航栏样式 */
+.navbar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    background-color: var(--card-background);
+    color: var(--text-color);
+    z-index: 1000;
+    box-shadow: var(--navbar-shadow);
+    border-radius: 12px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    padding: 15px;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* 分类标签样式 */
+.category-tabs {
+    display: flex;
+    justify-content: center;
+}
+
+.category-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    padding: 8px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.2s, color 0.3s;
+}
+
+.category-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-theme .category-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.category-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+/* 浮动控制按钮 */
+.floating-controls {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.floating-controls button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.floating-controls button:hover {
+    transform: scale(1.1);
+}
+
+.navbar-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar-controls button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.navbar-controls button:hover {
+    background-color: var(--primary-color);
+    opacity: 0.9;
+}
+
+/* 卡片容器样式 */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 130px 20px 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* 卡片样式 */
+.card {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    width: calc(25% - 15px);
+    min-width: 250px;
+    max-width: 300px;
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.card-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    user-select: none; /* 禁止选择 */
+    -webkit-user-drag: none; /* 禁止拖拽 */
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+    white-space: nowrap;     /* 防止文本换行 */
+    overflow: hidden;        /* 隐藏超出部分 */
+    text-overflow: ellipsis; /* 显示省略号 */
+    width: 100%;             /* 确保宽度为100% */
+    max-width: 200px;        /* 限制最大宽度 */
+}
+
+.version-selector {
+    position: relative;
+}
+
+.version-display {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.version-options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    width: 100px;
+    display: none;
+    z-index: 10;
+}
+
+.version-option {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.version-option:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* 密钥显示样式 */
+.key-display {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 15px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    color: #aaaaaa; /* 浅灰色星号 */
+    line-height: 1.2; /* 增加行高，使多行星号更易读 */
+}
+
+/* 暗色主题下的密钥颜色 */
+body.dark-theme .key-display {
+    color: #666666; /* 暗色主题下使用稍深的灰色 */
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.copy-key {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.key-display:hover .copy-key {
+    opacity: 1;
+}
+
+/* 响应式设计 */
+@media (min-width: 1600px) {
+    .card {
+        width: calc(20% - 16px);
+    }
+}
+
+@media (max-width: 1400px) {
+    .card {
+        width: calc(33.333% - 14px);
+    }
+}
+
+@media (max-width: 1000px) {
+    .card {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        top: 5px;
+        left: 5px;
+        width: calc(100% - 10px);
+    }
+    
+    .card-container {
+        padding-top: 160px;
+        justify-content: center;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 340px;
+    }
+    
+    .download-banner {
+        bottom: 20px;
+        max-width: 90%;
+    }
+    
+    .floating-controls {
+        bottom: 90px;
+    }
+}
+
+/* 底部下载提示 */
+.download-banner {
+    position: fixed;
+    bottom: 63px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 80%;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 12px 20px;
+    z-index: 900;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* 下载链接样式 */
+.download-banner a {
+    color: #ffeb3b; /* 明亮的黄色 */
+    font-weight: bold;
+    text-decoration: underline;
+    transition: color 0.2s;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* 添加轻微文字阴影增强可读性 */
+}
+
+.download-banner a:hover {
+    color: #eacf00; /* 鼠标悬停时的浅黄色 */
+}
+
+/* 暗色主题下的下载链接 */
+body.dark-theme .download-banner a {
+    color: #ffeb3b; /* 暗色主题下使用亮绿色 */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .download-banner a:hover {
+    color: #eacf00; /* 暗色主题下鼠标悬停时的浅绿色 */
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    position: relative;
+    width: 100%;
+    z-index: 800;
+    margin-top: 20px;
+}
+
+.disclaimer {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
