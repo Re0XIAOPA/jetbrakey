@@ -16,10 +16,10 @@
 
 /* 暗色主题 */
 .dark-theme {
-    --background-color: #1a1a1a;
-    --card-background: #2d2d2d;
+    --background-color: #000000;
+    --card-background: #27272c;
     --text-color: #f0f0f0;
-    --border-color: #444444;
+    --border-color: #1F2226;
     --navbar-bg: #121212;
     --button-bg: #2a5db0;
     --navbar-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
@@ -73,6 +73,7 @@ body {
     padding: 8px 20px;
     margin: 0 5px;
     cursor: pointer;
+    font-size: 16px;
     border-radius: 20px;
     transition: background-color 0.2s, color 0.3s;
 }
@@ -94,7 +95,7 @@ body.dark-theme .category-btn:hover {
 /* 浮动控制按钮 */
 .floating-controls {
     position: fixed;
-    bottom: 90px;
+    bottom: 60px;
     right: 20px;
     display: flex;
     flex-direction: column;
@@ -177,10 +178,11 @@ body.dark-theme .category-btn:hover {
 
 .card-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
     margin-bottom: 15px;
     width: 100%;
+    gap: 10px;
 }
 
 .card-icon-container {
@@ -214,51 +216,62 @@ body.dark-theme .category-btn:hover {
 
 /* 版本选择器样式 */
 .version-selector {
-    position: relative;
-    margin-left: auto; /* 将版本选择器推到右侧 */
+    position: absolute;
+    top: 0;
+    right: 0;
     display: flex;
-    justify-content: flex-end; /* 右对齐 */
+    justify-content: flex-end;
+    max-width: 100%;
+    z-index: 1;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .version-display {
     background-color: var(--primary-color);
     color: white;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 4px;
     font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
-    max-width: 120px; /* 限制最大宽度 */
+    max-width: 100%;
     overflow: hidden;
-    text-overflow: ellipsis; /* 超出部分显示省略号 */
+    text-overflow: ellipsis;
     white-space: nowrap;
-    text-align: right; /* 文本右对齐 */
+    text-align: right;
 }
 
 .version-options {
     position: absolute;
     top: 100%;
-    right: 0; /* 右对齐下拉菜单 */
+    right: 0;
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    min-width: 100%; /* 至少与版本按钮同宽 */
-    width: max-content; /* 根据内容自适应宽度 */
-    max-width: 200px; /* 最大宽度限制 */
+    min-width: 100%; /* 继承按钮宽度 */
+    width: auto;
+    max-width: 200px;
     display: none;
     z-index: 10;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-height: 200px;
-    overflow-y: auto; /* 内容过多时可滚动 */
+    overflow-y: auto;
+    white-space: nowrap; /* 防止选项换行 */
 }
 
 .version-option {
     padding: 5px 10px;
     cursor: pointer;
-    text-align: right; /* 选项文本右对齐 */
-    white-space: nowrap; /* 防止文本换行 */
+    text-align: right;
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* 超出部分显示省略号 */
+    text-overflow: ellipsis;
+    max-width: 100%; /* 限制最大宽度 */
 }
 
 .version-option:hover {
@@ -280,6 +293,12 @@ body.dark-theme .version-option:hover {
     cursor: pointer;
     color: #aaaaaa; /* 浅灰色星号 */
     line-height: 1.2; /* 增加行高，使多行星号更易读 */
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* 暗色主题下的密钥颜色 */
@@ -346,6 +365,41 @@ body.dark-theme .download-banner a {
 
 body.dark-theme .download-banner a:hover {
     color: #eacf00; /* 暗色主题下鼠标悬停时的浅绿色 */
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    position: relative;
+    width: 100%;
+    z-index: 800;
+    margin-top: 20px;
+}
+
+.disclaimer {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+/* 无密钥提示样式 */
+.no-key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px; /* 保持原有密钥区域高度 */
+    margin: 0;
+    font-size: 1.1em;
+    color: #888;
+}
+
+/* 暗色主题适配 */
+body.dark-theme .no-key {
+    color: #666;
 }
 
 /* 页脚样式 */

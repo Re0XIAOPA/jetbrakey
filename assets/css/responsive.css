@@ -25,7 +25,7 @@
     }
     
     .card-container {
-        padding-top: 160px;
+        padding-top: 120px;
         justify-content: center;
     }
     
@@ -35,11 +35,17 @@
     }
     
     .download-banner {
-        bottom: 20px;
-        max-width: 90%;
+        bottom: 66px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        text-align: center;
+        padding: 12px 20px;
+        max-width: 100%;
+        font-size: 14px;
     }
     
     .floating-controls {
-        bottom: 90px;
+        bottom: 60px;
     }
 }

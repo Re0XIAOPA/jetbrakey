@@ -101,23 +101,35 @@ document.addEventListener('DOMContentLoaded', function() {
     renderCards(currentCategory);
     updateDownloadInfo(currentCategory);
     
-    // 主题切换
+    // 主题切换（添加防抖）
+    let themeDebounce = false;
     themeToggle.addEventListener('click', function() {
+        if (themeDebounce) return;
+        themeDebounce = true;
+        
+        // 移除系统主题监听
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', detectAndApplySystemTheme);
+        }
+        
         document.body.classList.toggle('dark-theme');
         isDarkTheme = !isDarkTheme;
         
-        // 保存主题设置到本地存储
+        // 同步保存到本地存储
         localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
         
-        // 切换图标
+        // 图标切换
         const themeIcon = this.querySelector('i');
-        if (isDarkTheme) {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-        }
+        themeIcon.classList.toggle('fa-moon');
+        themeIcon.classList.toggle('fa-sun');
+        
+        // 更新导航栏过渡属性
+        const navbar = document.querySelector('.navbar');
+        navbar.style.transition = 'background-color 0.3s, box-shadow 0.3s';
+        
+        setTimeout(() => {
+            themeDebounce = false;
+        }, 300);
     });
     
     // 语言切换
@@ -164,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 获取默认版本（第一个版本）
             const defaultVersion = software.versions[0];
-            const key = software.keys[defaultVersion] || '';
+            let currentKey = software.keys[defaultVersion] || '';
             
             // 创建版本选择器选项
             const versionOptions = software.versions.map(version => 
@@ -185,10 +197,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                 </div>
-                <div class="key-display" data-key="${key}">
-                    ${!key || key.trim() === '' ? CONFIG.text[currentLanguage].noKey : '*'.repeat(32)}
-                    ${!key || key.trim() === '' ? CONFIG.text[currentLanguage].noKey : '*'.repeat(32)}
-                    ${!key || key.trim() === '' ? CONFIG.text[currentLanguage].noKey : '*'.repeat(32)}
+                <div class="key-display">
+                    ${!currentKey || currentKey.trim() === '' 
+                        ? `<div class="no-key">${CONFIG.text[currentLanguage].noKey}</div>` 
+                        : `${'*'.repeat(32)}<br>${'*'.repeat(32)}<br>${'*'.repeat(32)}`}
                     <div class="copy-key">${CONFIG.text[currentLanguage].copyKey}</div>
                 </div>
             `;
@@ -200,7 +212,36 @@ document.addEventListener('DOMContentLoaded', function() {
             const versionDisplay = card.querySelector('.version-display');
             const versionOptionsContainer = card.querySelector('.version-options');
             const keyDisplay = card.querySelector('.key-display');
-            const copyKeyElement = card.querySelector('.copy-key');
+            let realKey = currentKey;
+            
+            // 创建新的复制处理器
+            function createCopyHandler(key, lang) {
+                return function() {
+                    if (!key || key.trim() === '') {
+                        const copyKeyElement = this.querySelector('.copy-key');
+                        copyKeyElement.textContent = CONFIG.text[lang].noKey;
+                        return;
+                    }
+                    navigator.clipboard.writeText(key).then(() => {
+                        const copyKeyElement = this.querySelector('.copy-key');
+                        copyKeyElement.textContent = CONFIG.text[lang].copySuccess;
+                        setTimeout(() => {
+                            copyKeyElement.textContent = CONFIG.text[lang].copyKey;
+                        }, 2000);
+                    });
+                };
+            }
+            
+            // 初始化绑定事件
+            keyDisplay.addEventListener('click', createCopyHandler(realKey, currentLanguage));
+            
+            // 反调试检测
+            const antiDebug = setInterval(() => {
+                if(typeof console.profiles !== 'undefined' || typeof console._commandLineAPI !== 'undefined') {
+                    document.body.innerHTML = '<h1 style="color:red">禁止使用开发者工具！</h1>';
+                    clearInterval(antiDebug);
+                }
+            }, 500);
             
             // 显示/隐藏版本选项
             versionDisplay.addEventListener('click', function(e) {
@@ -218,19 +259,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const selectedVersion = this.dataset.version;
-                    const newKey = software.keys[selectedVersion] || '';
-                    
+                    realKey = software.keys[selectedVersion] || '';
+                
                     // 更新显示 - 只显示版本号
                     versionDisplay.textContent = selectedVersion;
                     versionDisplay.title = selectedVersion;
-                    
+                
                     // 更新密钥显示
                     keyDisplay.innerHTML = `
-                    ${!newKey || newKey.trim() === '' ? CONFIG.text[currentLanguage].noKey : '*'.repeat(32)}
-                        <div class="copy-key">${CONFIG.text[currentLanguage].copyKey}</div>
+                        ${!realKey || realKey.trim() === '' 
+                            ? `<div class="no-key">${CONFIG.text[currentLanguage].noKey}</div>` 
+                            : `${'*'.repeat(32)}<br>${'*'.repeat(32)}<br>${'*'.repeat(32)}`}
+                        ${realKey && realKey.trim() !== '' ? `<div class="copy-key">${CONFIG.text[currentLanguage].copyKey}</div>` : ''}
                     `;
-                    
-                    keyDisplay.dataset.key = newKey;
+                
+                    // 重新绑定点击事件
+                    // 重新绑定点击事件时传递当前语言状态
+                    if (realKey && realKey.trim() !== '') {
+    keyDisplay.onclick = createCopyHandler(realKey, currentLanguage);
+} else {
+    keyDisplay.onclick = null;
+}
                     versionOptionsContainer.style.display = 'none';
                 });
             });
@@ -240,25 +289,19 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 复制密钥功能
             keyDisplay.addEventListener('click', function() {
-                const keyToCopy = this.dataset.key;
-                
-                // 检查密钥是否为空
-                if (!keyToCopy || keyToCopy.trim() === '') {
-                    // 显示暂无密钥提示
-                    copyKeyElement.textContent = CONFIG.text[currentLanguage].noKey;
-                    setTimeout(() => {
-                        copyKeyElement.textContent = CONFIG.text[currentLanguage].copyKey;
-                    }, 2000);
-                    return; // 终止函数执行
-                }
-                
-                // 如果有密钥，则复制
-                navigator.clipboard.writeText(keyToCopy).then(() => {
-                    copyKeyElement.textContent = CONFIG.text[currentLanguage].copySuccess;
-                    setTimeout(() => {
-                        copyKeyElement.textContent = CONFIG.text[currentLanguage].copyKey;
-                    }, 2000);
-                });
+                if (!realKey || realKey.trim() === '') return;
+                // 实时检测密钥有效性
+                    if (!realKey || realKey.trim() === '') {
+                        this.querySelector('.copy-key').textContent = CONFIG.text[currentLanguage].noKey;
+                        return;
+                    }
+                    navigator.clipboard.writeText(realKey).then(() => {
+                        const copyKeyElement = this.querySelector('.copy-key');
+                        copyKeyElement.textContent = CONFIG.text[currentLanguage].copySuccess;
+                        setTimeout(() => {
+                            copyKeyElement.textContent = CONFIG.text[currentLanguage].copyKey;
+                        }, 2000);
+                    });
             });
         });
     }
@@ -298,4 +341,4 @@ document.addEventListener('DOMContentLoaded', function() {
         // 更新卡片内容
         renderCards(currentCategory);
     }
-}); 
+});
