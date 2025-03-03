@@ -1,0 +1,45 @@
+/* 响应式设计 */
+@media (min-width: 1600px) {
+    .card {
+        width: calc(20% - 16px);
+    }
+}
+
+@media (max-width: 1400px) {
+    .card {
+        width: calc(33.333% - 14px);
+    }
+}
+
+@media (max-width: 1000px) {
+    .card {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        top: 5px;
+        left: 5px;
+        width: calc(100% - 10px);
+    }
+    
+    .card-container {
+        padding-top: 160px;
+        justify-content: center;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 340px;
+    }
+    
+    .download-banner {
+        bottom: 20px;
+        max-width: 90%;
+    }
+    
+    .floating-controls {
+        bottom: 90px;
+    }
+}

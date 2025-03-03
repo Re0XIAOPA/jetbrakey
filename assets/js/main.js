@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化状态
     let currentCategory = 'jetbra';
     let currentLanguage = CONFIG.settings.defaultLanguage;
-    let isDarkTheme = false;
+    // 根据系统主题或本地存储的设置初始化主题状态
+    let isDarkTheme = document.body.classList.contains('dark-theme');
     
     // 获取DOM元素
     const themeToggle = document.getElementById('theme-toggle');
@@ -17,15 +18,47 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 检测系统主题偏好并应用
     function detectAndApplySystemTheme() {
-        // 检查系统是否偏好深色模式
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark-theme');
-            isDarkTheme = true;
-            
-            // 更新主题切换按钮图标
-            const themeIcon = themeToggle.querySelector('i');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
+        // 检查本地存储中的主题设置
+        const savedTheme = localStorage.getItem('theme');
+        
+        // 如果有保存的主题设置，使用保存的设置
+        if (savedTheme) {
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                isDarkTheme = true;
+                
+                // 更新主题切换按钮图标
+                const themeIcon = themeToggle.querySelector('i');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                document.body.classList.remove('dark-theme');
+                isDarkTheme = false;
+                
+                // 更新主题切换按钮图标
+                const themeIcon = themeToggle.querySelector('i');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        } else {
+            // 否则，根据系统主题偏好设置
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-theme');
+                isDarkTheme = true;
+                
+                // 更新主题切换按钮图标
+                const themeIcon = themeToggle.querySelector('i');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                document.body.classList.remove('dark-theme');
+                isDarkTheme = false;
+                
+                // 更新主题切换按钮图标
+                const themeIcon = themeToggle.querySelector('i');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
         }
     }
     
@@ -66,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化页面
     updateLanguageText();
     renderCards(currentCategory);
+    updateDownloadInfo(currentCategory);
     
     // 主题切换
     themeToggle.addEventListener('click', function() {
@@ -105,6 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // 更新当前分类并重新渲染卡片
             currentCategory = category;
             renderCards(category);
+            
+            // 更新下载提示栏内容
+            updateDownloadInfo(category);
         });
     });
     
@@ -127,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 获取默认版本（第一个版本）
             const defaultVersion = software.versions[0];
-            const key = software.keys[defaultVersion];
+            const key = software.keys[defaultVersion] || '';
             
             // 创建版本选择器选项
             const versionOptions = software.versions.map(version => 
@@ -149,9 +186,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 <div class="key-display" data-key="${key}">
-                    ${'*'.repeat(32)}
-                    ${'*'.repeat(32)}
-                    ${'*'.repeat(32)}
+                    ${!key || key.trim() === '' ? CONFIG.text[currentLanguage].noKey : '*'.repeat(32)}
+                    ${!key || key.trim() === '' ? CONFIG.text[currentLanguage].noKey : '*'.repeat(32)}
+                    ${!key || key.trim() === '' ? CONFIG.text[currentLanguage].noKey : '*'.repeat(32)}
                     <div class="copy-key">${CONFIG.text[currentLanguage].copyKey}</div>
                 </div>
             `;
@@ -181,18 +218,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const selectedVersion = this.dataset.version;
-                    const newKey = software.keys[selectedVersion];
+                    const newKey = software.keys[selectedVersion] || '';
                     
                     // 更新显示 - 只显示版本号
                     versionDisplay.textContent = selectedVersion;
+                    versionDisplay.title = selectedVersion;
+                    
+                    // 更新密钥显示
+                    keyDisplay.innerHTML = `
+                    ${!newKey || newKey.trim() === '' ? CONFIG.text[currentLanguage].noKey : '*'.repeat(32)}
+                        <div class="copy-key">${CONFIG.text[currentLanguage].copyKey}</div>
+                    `;
+                    
                     keyDisplay.dataset.key = newKey;
                     versionOptionsContainer.style.display = 'none';
                 });
             });
             
+            // 添加标题属性，鼠标悬停时显示完整版本号
+            versionDisplay.title = versionDisplay.textContent;
+            
             // 复制密钥功能
             keyDisplay.addEventListener('click', function() {
                 const keyToCopy = this.dataset.key;
+                
+                // 检查密钥是否为空
+                if (!keyToCopy || keyToCopy.trim() === '') {
+                    // 显示暂无密钥提示
+                    copyKeyElement.textContent = CONFIG.text[currentLanguage].noKey;
+                    setTimeout(() => {
+                        copyKeyElement.textContent = CONFIG.text[currentLanguage].copyKey;
+                    }, 2000);
+                    return; // 终止函数执行
+                }
+                
+                // 如果有密钥，则复制
                 navigator.clipboard.writeText(keyToCopy).then(() => {
                     copyKeyElement.textContent = CONFIG.text[currentLanguage].copySuccess;
                     setTimeout(() => {
@@ -204,11 +264,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /**
+     * 更新下载提示栏内容
+     * @param {string} category - 当前分类
+     */
+    function updateDownloadInfo(category) {
+        // 只更新底部提示栏，不更新导航栏提示
+        const downloadBannerElement = document.getElementById('download-banner').querySelector('.download-text');
+        
+        // 获取当前分类的下载提示
+        const infoText = CONFIG.text[currentLanguage].downloadInfo[category] || 
+                        CONFIG.text[currentLanguage].downloadInfo.jetbra; // 默认使用jetbra的提示
+        
+        // 更新底部提示栏内容
+        downloadBannerElement.innerHTML = infoText;
+    }
+    
+    /**
      * 更新语言文本
      */
     function updateLanguageText() {
-        // 更新下载提示和免责声明
-        document.getElementById('download-banner').querySelector('.download-text').innerHTML = CONFIG.text[currentLanguage].downloadInfo;
+        // 更新免责声明
         document.getElementById('footer').querySelector('.disclaimer').textContent = CONFIG.text[currentLanguage].disclaimer;
         
         // 更新分类标签文本
@@ -216,5 +291,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const category = button.dataset.category;
             button.textContent = CONFIG.text[currentLanguage].categories[category];
         });
+        
+        // 更新当前分类的下载提示
+        updateDownloadInfo(currentCategory);
+        
+        // 更新卡片内容
+        renderCards(currentCategory);
     }
 }); 

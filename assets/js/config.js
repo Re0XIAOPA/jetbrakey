@@ -6,7 +6,6 @@ const CONFIG = {
     // 应用设置
     settings: {
         defaultLanguage: 'zh', // 默认语言：中文
-        defaultTheme: 'light', // 默认主题：浅色
         availableLanguages: ['zh', 'en'], // 可用语言
     },
     
@@ -66,6 +65,43 @@ const CONFIG = {
                     "2024.1.0": "77ABD9DU2F2HPOJ-eyJsaWNlbnNlSWQiOiI3N0FCRDlEVTJGMkhQT0oiLCJsaWNlbnNlZU5hbWUiOiJtZW5vcmFoIHBhcmFwZXQiLCJsaWNlbnNlZVR5cGUiOiJQRVJTT05BTCIsImFzc2lnbmVlTmFtZSI6IiIsImFzc2lnbmVlRW1haWwiOiIiLCJsaWNlbnNlUmVzdHJpY3Rpb24iOiIiLCJjaGVja0NvbmN1cnJlbnRVc2UiOmZhbHNlLCJwcm9kdWN0cyI6W3siY29kZSI6IlBXTEFORyIsImZhbGxiYWNrRGF0ZSI6IjIwMjYtMDktMTQiLCJwYWlkVXBUbyI6IjIwMjYtMDktMTQiLCJleHRlbmRlZCI6ZmFsc2V9XSwibWV0YWRhdGEiOiIwMjIwMjQwNzAyUFNBWDAwMDAwNVgiLCJoYXNoIjoiMTIzNDU2NzgvMC0xODMzMjk3NjUwIiwiZ3JhY2VQZXJpb2REYXlzIjo3LCJhdXRvUHJvbG9uZ2F0ZWQiOmZhbHNlLCJpc0F1dG9Qcm9sb25nYXRlZCI6ZmFsc2UsInRyaWFsIjpmYWxzZSwiYWlBbGxvd2VkIjp0cnVlfQ==-XxDU07XSX1MIXa+h6rGhD0hk2Now00j7i9XGl/+kLV1kIRAxvtXOKB/QGvLf4ngjrpzmMuU36ISLyg1iZDOgJswWfc6uqtMgRc4NevoFoS3F2yLou/Ozi8GTdeG6KF/l1NxVpl4qpcKBPzc1B5tCc1EAlNZibq7q2aH5GbYh5glcc7YXSNrj/G6e1RroXaXhaxRgh04AP0n6r7B4TjqO+xtfUOCHsTgemBIshTNBcdAQLfAo2qEIzXk/GVNXjvNKnd2RzYy00keP2tMIYrlKXNczAF98hTKi0Yh0IZH9FEE+F0MkRGGxuaI6hbuLQkhgUx+0JCJVJ0lHxyQ1l70OfA==-MIIETDCCAjSgAwIBAgIBDTANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTIwMTAxOTA5MDU1M1oXDTIyMTAyMTA5MDU1M1owHzEdMBsGA1UEAwwUcHJvZDJ5LWZyb20tMjAyMDEwMTkwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCUlaUFc1wf+CfY9wzFWEL2euKQ5nswqb57V8QZG7d7RoR6rwYUIXseTOAFq210oMEe++LCjzKDuqwDfsyhgDNTgZBPAaC4vUU2oy+XR+Fq8nBixWIsH668HeOnRK6RRhsr0rJzRB95aZ3EAPzBuQ2qPaNGm17pAX0Rd6MPRgjp75IWwI9eA6aMEdPQEVN7uyOtM5zSsjoj79Lbu1fjShOnQZuJcsV8tqnayeFkNzv2LTOlofU/Tbx502Ro073gGjoeRzNvrynAP03pL486P3KCAyiNPhDs2z8/COMrxRlZW5mfzo0xsK0dQGNH3UoG/9RVwHG4eS8LFpMTR9oetHZBAgMBAAGjgZkwgZYwCQYDVR0TBAIwADAdBgNVHQ4EFgQUJNoRIpb1hUHAk0foMSNM9MCEAv8wSAYDVR0jBEEwP4AUo562SGdCEjZBvW3gubSgUouX8bOhHKQaMBgxFjAUBgNVBAMMDUpldFByb2ZpbGUgQ0GCCQDSbLGDsoN54TATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBaAwDQYJKoZIhvcNAQELBQADggIBABKaDfYJk51mtYwUFK8xqhiZaYPd30TlmCmSAaGJ0eBpvkVeqA2jGYhAQRqFiAlFC63JKvWvRZO1iRuWCEfUMkdqQ9VQPXziE/BlsOIgrL6RlJfuFcEZ8TK3syIfIGQZNCxYhLLUuet2HE6LJYPQ5c0jH4kDooRpcVZ4rBxNwddpctUO2te9UU5/FjhioZQsPvd92qOTsV+8Cyl2fvNhNKD1Uu9ff5AkVIQn4JU23ozdB/R5oUlebwaTE6WZNBs+TA/qPj+5/we9NH71WRB0hqUoLI2AKKyiPw++FtN4Su1vsdDlrAzDj9ILjpjJKA1ImuVcG329/WTYIKysZ1CWK3zATg9BeCUPAV1pQy8ToXOq+RSYen6winZ2OO93eyHv2Iw5kbn1dqfBw1BuTE29V2FJKicJSu8iEOpfoafwJISXmz1wnnWL3V/0NxTulfWsXugOoLfv0ZIBP1xH9kmf22jjQ2JiHhQZP7ZDsreRrOeIQ/c4yR8IQvMLfC0WKQqrHu5ZzXTH4NO3CwGWSlTY74kE91zXB5mwWAx1jig+UXYc2w4RkVhy0//lOmVya/PEepuuTTI4+UJwC7qbVlh5zfhj8oTNUXgN0AOc+Q0/WFPl1aw5VV/VrO8FCoB15lFVlpKaQ1Yh+DVU8ke+rt9Th0BCHXe0uZOEmH0nOnH/0onD",
                 }
             }
+        ],
+
+        //2099
+        jetbra2099: [
+            {
+                name: "IntelliJ IDEA",
+                icon: "https://img.icons8.com/?size=100&id=61466&format=png&color=000000",
+                versions: ["2024.1.x"],
+                keys: {
+                    "2024.1.x": "",
+                }
+            }
+        ],
+
+        
+        // 添加新分类 - 示例：工具分类
+        tools: [
+            {
+                name: "示例工具",
+                icon: "assets/image/tool-icon.png", // 替换为实际图标路径
+                versions: ["1.0"],
+                keys: {
+                    "1.0": "这是示例工具的激活码"
+                }
+            }
+        ],
+        
+        // 添加新分类 - 示例：游戏分类
+        games: [
+            {
+                name: "示例游戏",
+                icon: "assets/image/game-icon.png", // 替换为实际图标路径
+                versions: ["2023"],
+                keys: {
+                    "2023": "这是示例游戏的激活码"
+                }
+            }
         ]
     },
     
@@ -76,12 +112,20 @@ const CONFIG = {
             themeToggle: "切换主题",
             copyKey: "复制密钥",
             copySuccess: "复制成功！",
+            noKey: "暂无密钥！",
             version: "版本",
-            downloadInfo: "📥 下载 <a href='jetbraZip/files/jetbra-240701.zip' download>jetbra.zip (240701)</a> 按readme.txt安装！🚨 仅限测试使用！",
+            downloadInfo: {
+                jetbra: "📥 下载 <a href='jetbraZip/files/jetbra-240701.zip' download>jetbra.zip (240701)</a> 按readme.txt安装！🚨 仅限测试使用！",
+                plugins: "📥 插件可直接在IDE中安装，输入激活码即可使用！🚨 仅限测试使用！",
+                jetbra2099: "📥 2099版本为长期支持版本，<a href='jetbraZip/files/jetbra-2099.zip' download>点击下载</a> 按说明安装！🚨 仅限测试使用！"
+            },
             disclaimer: "以上所有密钥均从互联网上收集，仅用于测试目的，不用于商业用途！个人页面，不是官方网站！",
             categories: {
                 jetbra: "Jetbra",
-                plugins: "插件"
+                plugins: "插件",
+                jetbra2099: "2099",
+                // tools: "工具",
+                // games: "游戏"
             }
         },
         en: {
@@ -89,12 +133,20 @@ const CONFIG = {
             themeToggle: "Toggle Theme",
             copyKey: "Copy Key",
             copySuccess: "Copied!",
+            noKey: "No key available!",
             version: "Version",
-            downloadInfo: "📥 Download <a href='jetbraZip/files/jetbra-240701.zip' download>jetbra.zip (240701)</a> Install according to readme.txt! 🚨 For testing only!",
+            downloadInfo: {
+                jetbra: "📥 Download <a href='jetbraZip/files/jetbra-240701.zip' download>jetbra.zip (240701)</a> Install according to readme.txt! 🚨 For testing only!",
+                plugins: "📥 Plugins can be installed directly in IDE, enter activation code to use! 🚨 For testing only!",
+                jetbra2099: "📥 2099 version is long-term support, <a href='jetbraZip/files/jetbra-2099.zip' download>click to download</a> Install according to instructions! 🚨 For testing only!"
+            },
             disclaimer: "All of the above keys are collected from the internet and are for testing purposes only, not for commercial use! Personal page, not the official website!",
             categories: {
                 jetbra: "Jetbra",
-                plugins: "Plugins"
+                plugins: "Plugins",
+                jetbra2099: "2099",
+                // tools: "Tools",
+                // games: "Games"
             }
         }
     }
