@@ -118,10 +118,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // 同步保存到本地存储
         localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
         
-        // 立即更新图标（移除过渡效果）
+        // 强制更新图标状态
         const themeIcon = this.querySelector('i');
-        themeIcon.classList.toggle('fa-moon');
-        themeIcon.classList.toggle('fa-sun');
+        themeIcon.classList.remove(isDarkTheme ? 'fa-moon' : 'fa-sun');
+        themeIcon.classList.add(isDarkTheme ? 'fa-sun' : 'fa-moon');
         
         // 更新导航栏过渡属性
         const navbar = document.querySelector('.navbar');
