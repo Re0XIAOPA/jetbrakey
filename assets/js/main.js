@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 同步保存到本地存储
         localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
         
-        // 图标切换
+        // 立即更新图标（移除过渡效果）
         const themeIcon = this.querySelector('i');
         themeIcon.classList.toggle('fa-moon');
         themeIcon.classList.toggle('fa-sun');
