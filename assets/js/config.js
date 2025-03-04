@@ -280,57 +280,100 @@ const CONFIG = {
             {
                 name: "IntelliJ IDEA",
                 icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/IntelliJ_IDEA_icon.png",
-                versions: ["2024.1.x"],
+                versions: ["2024.1.x","2023.1.x","2022.1.x","2021.1.x"],
                 keys: {
-                    "2024.1.x": ""
+                    "2024.x.x": "无需密钥",
+                    "2023.x.x": "无需密钥",
+                    "2022.x.x": "无需密钥",
+                    "2021.x.x": "无需密钥",
                 }
             },
             {
                 name: "PyCharm",
                 icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/PyCharm_icon.png",
-                versions: ["2024.1.x"],
+                versions: ["2024.1.x","2023.1.x","2022.1.x","2021.1.x"],
                 keys: {
-                    "2024.1.x": ""
+                    "2024.x.x": "无需密钥",
+                    "2023.x.x": "无需密钥",
+                    "2022.x.x": "无需密钥",
+                    "2021.x.x": "无需密钥",
                 }
             },
             {
                 name: "WebStorm",
                 icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/WebStorm_icon.png",
-                versions: ["2024.1.x"],
+                versions: ["2024.1.x","2023.1.x","2022.1.x","2021.1.x"],
                 keys: {
-                    "2024.1.x": ""
+                    "2024.x.x": "无需密钥",
+                    "2023.x.x": "无需密钥",
+                    "2022.x.x": "无需密钥",
+                    "2021.x.x": "无需密钥",
                 }
             },
             {
                 name: "PhpStorm",
                 icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/PhpStorm_icon.png",
-                versions: ["2024.1.x"],
+                versions: ["2024.1.x","2023.1.x","2022.1.x","2021.1.x"],
                 keys: {
-                    "2024.1.x": ""
+                    "2024.x.x": "无需密钥",
+                    "2023.x.x": "无需密钥",
+                    "2022.x.x": "无需密钥",
+                    "2021.x.x": "无需密钥",
                 }
             },
             {
                 name: "Rider",
                 icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/Rider_icon.png",
-                versions: ["2024.1.x"],
+                versions: ["2024.1.x","2023.1.x","2022.1.x","2021.1.x"],
                 keys: {
-                    "2024.1.x": ""
+                    "2024.x.x": "无需密钥",
+                    "2023.x.x": "无需密钥",
+                    "2022.x.x": "无需密钥",
+                    "2021.x.x": "无需密钥",
                 }
             },
             {
                 name: "CLion",
                 icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/CLion_icon.png",
-                versions: ["2024.1.x"],
+                versions: ["2024.1.x","2023.1.x","2022.1.x","2021.1.x"],
                 keys: {
-                    "2024.1.x": ""
+                    "2024.x.x": "无需密钥",
+                    "2023.x.x": "无需密钥",
+                    "2022.x.x": "无需密钥",
+                    "2021.x.x": "无需密钥",
                 }
             },
             {
                 name: "GoLand",
                 icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/GoLand_icon.png",
-                versions: ["2024.1.x"],
+                versions: ["2024.1.x","2023.1.x","2022.1.x","2021.1.x"],
                 keys: {
-                    "2024.1.x": ""
+                    "2024.x.x": "无需密钥",
+                    "2023.x.x": "无需密钥",
+                    "2022.x.x": "无需密钥",
+                    "2021.x.x": "无需密钥",
+                }
+            },
+            {
+                name: "DataGrip",
+                icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/DataGrip_icon.png",
+                versions: ["2024.1.x","2023.1.x","2022.1.x","2021.1.x"],
+                keys: {
+                    "2024.x.x": "无需密钥",
+                    "2023.x.x": "无需密钥",
+                    "2022.x.x": "无需密钥",
+                    "2021.x.x": "无需密钥",
+                }
+            },
+            {
+                name: "DataSpell",
+                icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/DataSpell_icon.png",
+                versions: ["2024.1.x","2023.1.x","2022.1.x","2021.1.x"],
+                keys: {
+                    "2024.x.x": "无需密钥",
+                    "2023.x.x": "无需密钥",
+                    "2022.x.x": "无需密钥",
+                    "2021.x.x": "无需密钥",
                 }
             },
             {
@@ -344,14 +387,6 @@ const CONFIG = {
             {
                 name: "RubyMine",
                 icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/RubyMine_icon.png",
-                versions: ["2024.1.x"],
-                keys: {
-                    "2024.1.x": ""
-                }
-            },
-            {
-                name: "DataGrip",
-                icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/DataGrip_icon.png",
                 versions: ["2024.1.x"],
                 keys: {
                     "2024.1.x": ""
@@ -384,14 +419,6 @@ const CONFIG = {
             {
                 name: "DotTrace",
                 icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/dotTrace_icon.png",
-                versions: ["2024.1.x"],
-                keys: {
-                    "2024.1.x": ""
-                }
-            },
-            {
-                name: "DataSpell",
-                icon: "https://resources.jetbrains.com.cn/storage/products/company/brand/logos/DataSpell_icon.png",
                 versions: ["2024.1.x"],
                 keys: {
                     "2024.1.x": ""
@@ -453,7 +480,7 @@ const CONFIG = {
             downloadInfo: {
                 jetbra: "📥 下载 <a href='jetbraZip/files/jetbra-240701.zip' download>jetbra.zip (240701)</a> 按readme.txt安装！🚨 仅限测试使用！",
                 plugins: "📥 插件可直接在IDE中安装，输入激活码即可使用！🚨 仅限测试使用！",
-                jetbra2099: "📥 2099版本为长期支持版本，<a href='JavaScript:void(0);' download>点击下载</a> 按说明安装！🚨 仅限测试使用！"
+                jetbra2099: "📥 2099版本为长期支持版本，<a href='jetbraZip/files/JetBrains全家桶激活(2024最新激活2099).zip' download>点击下载</a> 按说明安装！🚨 仅限测试使用！"
             },
             disclaimer: "以上所有密钥均从互联网上收集，仅用于测试目的，不用于商业用途！个人页面，不是官方网站！",
             categories: {
@@ -474,7 +501,7 @@ const CONFIG = {
             downloadInfo: {
                 jetbra: "📥 Download <a href='jetbraZip/files/jetbra-240701.zip' download>jetbra.zip (240701)</a> Install according to readme.txt! 🚨 For testing only!",
                 plugins: "📥 Plugins can be installed directly in IDE, enter activation code to use! 🚨 For testing only!",
-                jetbra2099: "📥 2099 version is long-term support, <a href='jetbraZip/files/jetbra-2099.zip' download>click to download</a> Install according to instructions! 🚨 For testing only!"
+                jetbra2099: "📥 2099 version is long-term support, <a href='jetbraZip/files/JetBrains全家桶激活(2024最新激活2099).zip' download>click to download</a> Install according to instructions! 🚨 For testing only!"
             },
             disclaimer: "All of the above keys are collected from the internet and are for testing purposes only, not for commercial use! Personal page, not the official website!",
             categories: {
