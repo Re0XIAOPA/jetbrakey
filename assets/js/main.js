@@ -2,6 +2,7 @@
  * 主脚本文件
  * 处理页面交互和动态内容生成
  */
+import { CONFIG } from './config.js';
 document.addEventListener('DOMContentLoaded', function() {
     // 初始化状态
     let currentCategory = 'jetbra';
