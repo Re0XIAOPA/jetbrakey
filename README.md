@@ -7,7 +7,7 @@
 ### 克隆仓库
 
 ```bash
-git clone https://github.com/yourusername/jetbrakey.git
+git clone https://github.com/Re0XIAOPA/jetbrakey.git
 ```
 
 ## ⚙️ 配置指南
