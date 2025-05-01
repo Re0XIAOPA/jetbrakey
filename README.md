@@ -73,7 +73,7 @@ const CONFIG = {
 | 贡献仓库  
 | 请提交一个 [Pulls](https://github.com/Re0XIAOPA/ToolStore/pulls)  
 | 或者克隆仓库完成之后同步分支  
-| 资源收集于互联网：[查看](https://3.jetbra.in/)  
+| 资源收集于互联网：[更过点击查看](https://3.jetbra.in/)  
 
 ## 📂 项目结构
 
