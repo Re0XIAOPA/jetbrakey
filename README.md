@@ -1,6 +1,6 @@
 # JetBraKey
 
-[![GitHub Stars](https://img.shields.io/github/stars/yourusername/jetbrakey?style=for-the-badge)](https://github.com/Re0XIAOPA/jetbrakey)  [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](LICENSE)  [![Open Issues](https://img.shields.io/github/issues/yourusername/jetbrakey?style=for-the-badge)](https://github.com/Re0XIAOPA/jetbrakey/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/yourusername/jetbrakey?style=for-the-badge)](https://github.com/Re0XIAOPA/jetbrakey)    [![Open Issues](https://img.shields.io/github/issues/yourusername/jetbrakey?style=for-the-badge)](https://github.com/Re0XIAOPA/jetbrakey/issues)
 
 ## 🚀 快速开始
 
