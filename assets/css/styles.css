@@ -83,7 +83,7 @@ body {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-body.dark-theme .category-btn:hover {
+.dark-theme .category-btn:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -200,8 +200,10 @@ body.dark-theme .category-btn:hover {
     height: 80px;
     object-fit: contain;
     margin-bottom: 10px;
-    user-select: none; /* 禁止选择 */
-    -webkit-user-drag: none; /* 禁止拖拽 */
+    user-select: none;
+    /* 禁止选择 */
+    -webkit-user-drag: none;
+    /* 禁止拖拽 */
 }
 
 .card-title {
@@ -209,11 +211,16 @@ body.dark-theme .category-btn:hover {
     font-weight: bold;
     text-align: center;
     margin-top: 5px;
-    white-space: nowrap;     /* 防止文本换行 */
-    overflow: hidden;        /* 隐藏超出部分 */
-    text-overflow: ellipsis; /* 显示省略号 */
-    width: 100%;             /* 确保宽度为100% */
-    max-width: 200px;        /* 限制最大宽度 */
+    white-space: nowrap;
+    /* 防止文本换行 */
+    overflow: hidden;
+    /* 隐藏超出部分 */
+    text-overflow: ellipsis;
+    /* 显示省略号 */
+    width: 100%;
+    /* 确保宽度为100% */
+    max-width: 200px;
+    /* 限制最大宽度 */
 }
 
 /* 版本选择器样式 */
@@ -256,7 +263,8 @@ body.dark-theme .category-btn:hover {
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    min-width: 100%; /* 继承按钮宽度 */
+    min-width: 100%;
+    /* 继承按钮宽度 */
     width: auto;
     max-width: 200px;
     display: none;
@@ -264,7 +272,8 @@ body.dark-theme .category-btn:hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-height: 200px;
     overflow-y: auto;
-    white-space: nowrap; /* 防止选项换行 */
+    white-space: nowrap;
+    /* 防止选项换行 */
 }
 
 .version-option {
@@ -274,14 +283,15 @@ body.dark-theme .category-btn:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%; /* 限制最大宽度 */
+    max-width: 100%;
+    /* 限制最大宽度 */
 }
 
 .version-option:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-body.dark-theme .version-option:hover {
+.dark-theme .version-option:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -294,8 +304,10 @@ body.dark-theme .version-option:hover {
     text-align: center;
     position: relative;
     cursor: pointer;
-    color: #aaaaaa; /* 浅灰色星号 */
-    line-height: 1.2; /* 增加行高，使多行星号更易读 */
+    color: #aaaaaa;
+    /* 浅灰色星号 */
+    line-height: 1.2;
+    /* 增加行高，使多行星号更易读 */
     -webkit-user-drag: none;
     user-drag: none;
     -webkit-user-select: none;
@@ -305,8 +317,9 @@ body.dark-theme .version-option:hover {
 }
 
 /* 暗色主题下的密钥颜色 */
-body.dark-theme .key-display {
-    color: #666666; /* 暗色主题下使用稍深的灰色 */
+.dark-theme .key-display {
+    color: #666666;
+    /* 暗色主题下使用稍深的灰色 */
     background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -349,25 +362,30 @@ body.dark-theme .key-display {
 
 /* 下载链接样式 */
 .download-banner a {
-    color: #ffeb3b; /* 明亮的黄色 */
+    color: #ffeb3b;
+    /* 明亮的黄色 */
     font-weight: bold;
     text-decoration: underline;
     transition: color 0.2s;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* 添加轻微文字阴影增强可读性 */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    /* 添加轻微文字阴影增强可读性 */
 }
 
 .download-banner a:hover {
-    color: #eacf00; /* 鼠标悬停时的浅黄色 */
+    color: #eacf00;
+    /* 鼠标悬停时的浅黄色 */
 }
 
 /* 暗色主题下的下载链接 */
-body.dark-theme .download-banner a {
-    color: #ffeb3b; /* 暗色主题下使用亮绿色 */
+.dark-theme .download-banner a {
+    color: #ffeb3b;
+    /* 暗色主题下使用亮绿色 */
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-theme .download-banner a:hover {
-    color: #eacf00; /* 暗色主题下鼠标悬停时的浅绿色 */
+.dark-theme .download-banner a:hover {
+    color: #eacf00;
+    /* 暗色主题下鼠标悬停时的浅绿色 */
 }
 
 /* 页脚样式 */
@@ -389,20 +407,42 @@ body.dark-theme .download-banner a:hover {
     font-size: 0.9rem;
     opacity: 0.8;
 }
+
 /* 无密钥提示样式 */
 .no-key {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 60px; /* 保持原有密钥区域高度 */
+    min-height: 60px;
+    /* 保持原有密钥区域高度 */
     margin: 0;
     font-size: 1.1em;
     color: #888;
 }
 
 /* 暗色主题适配 */
-body.dark-theme .no-key {
+.dark-theme .no-key {
     color: #666;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    position: relative;
+    width: 100%;
+    z-index: 800;
+    margin-top: 20px;
+}
+
+.disclaimer {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 /* 页脚样式 */
